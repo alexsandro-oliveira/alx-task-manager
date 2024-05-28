@@ -1,4 +1,5 @@
-$background-color: lienar-gradient(259.93deg, #000000 -41.68%, #00171f 146.85%);
+$background-color: linear-gradient(259.93deg, #000000 -41.68%, #00171f 146.85%);
+
 $primary-text-color: #ffffff;
 
 * {
@@ -11,6 +12,6 @@ body {
   margin: 0;
   font-family: "Archivo", sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #00171f;
+  background: $background-color;
   color: $primary-text-color;
 }
