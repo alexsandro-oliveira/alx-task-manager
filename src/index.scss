@@ -1,0 +1,16 @@
+$background-color: lienar-gradient(259.93deg, #000000 -41.68%, #00171f 146.85%);
+$primary-text-color: #ffffff;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Archivo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #00171f;
+  color: $primary-text-color;
+}

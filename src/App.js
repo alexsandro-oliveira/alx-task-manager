@@ -4,18 +4,7 @@ import { useEffect, useState } from "react";
 import TaskItem from "./components/TaskItem";
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    {
-      id: "1",
-      description: "Estudar Programação",
-      isCompleted: false,
-    },
-    {
-      id: "2",
-      description: "Ler",
-      isCompleted: true,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   const fetchTasks = async () => {
     try {
