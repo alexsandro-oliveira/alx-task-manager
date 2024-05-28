@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import "./Tasks.scss";
 
+import AddTask from "./AddTask";
 import TaskItem from "./TaskItem";
 
 const Tasks = () => {
@@ -29,6 +30,7 @@ const Tasks = () => {
 
       <div className="last-tasks">
         <h3>Últimas Tarefas</h3>
+        <AddTask />
         <div className="tasks-list">
           {tasks
             .filter((task) => task.isCompleted === false)
