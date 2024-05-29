@@ -21,6 +21,23 @@ const TaskItem = ({ task, fetchTasks }) => {
     }
   };
 
+  const handleTaskCompletedChange = async (e) => {
+    try {
+      await axios.patch(
+        `https://alx-task-manager-backend.onrender.com/tasks/${task._id}`,
+        {
+          isCompleted: e.target.checked,
+        }
+      );
+
+      await fetchTasks();
+
+      alert.success("Tarefa concluída com sucesso!");
+    } catch (error) {
+      alert.error("Algo deu errado.");
+    }
+  };
+
   return (
     <div className="task-item-container">
       <div className="task-description">
@@ -32,7 +49,11 @@ const TaskItem = ({ task, fetchTasks }) => {
           }
         >
           {task.description}
-          <input type="checkbox" defaultChecked={task.isCompleted} />
+          <input
+            type="checkbox"
+            defaultChecked={task.isCompleted}
+            onChange={(e) => handleTaskCompletedChange(e)}
+          />
           <span
             className={task.isCompleted ? "checkmark completed" : "checkmark"}
           ></span>
