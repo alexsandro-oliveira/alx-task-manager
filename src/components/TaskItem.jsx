@@ -16,7 +16,7 @@ const TaskItem = ({ task, fetchTasks }) => {
       await fetchTasks();
 
       alert.success("A tarefa foi removida com sucesso!");
-    } catch (error) {
+    } catch (_error) {
       alert.error("Não foi possível remover esta tarefa.");
     }
   };
@@ -33,7 +33,7 @@ const TaskItem = ({ task, fetchTasks }) => {
       await fetchTasks();
 
       alert.success("Tarefa concluída com sucesso!");
-    } catch (error) {
+    } catch (_error) {
       alert.error("Algo deu errado.");
     }
   };
