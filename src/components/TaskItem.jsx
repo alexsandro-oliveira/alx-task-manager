@@ -4,7 +4,7 @@ import { AiFillDelete } from "react-icons/ai";
 
 import "./TaskItem.scss";
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, fetchTasks }) => {
   const alert = useAlert();
 
   const handleTaskDelete = async () => {
@@ -12,8 +12,12 @@ const TaskItem = ({ task }) => {
       await axios.delete(
         `https://alx-task-manager-backend.onrender.com/tasks/${task._id}`
       );
+
+      await fetchTasks();
+
+      alert.success("A tarefa foi removida com sucesso!");
     } catch (error) {
-      alert.error("Não foi possível deletar esta tarefa.");
+      alert.error("Não foi possível remover esta tarefa.");
     }
   };
 
