@@ -1,48 +1,48 @@
-import axios from "axios";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useAlert } from "react-alert";
+import axios from 'axios'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useAlert } from 'react-alert'
 
-import "./Tasks.scss";
+import './Tasks.scss'
 
-import AddTask from "./AddTask";
-import TaskItem from "./TaskItem";
+import AddTask from './AddTask'
+import TaskItem from './TaskItem'
 
 const Tasks = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([])
 
-  const alert = useAlert();
+  const alert = useAlert()
 
   const fetchTasks = useCallback(async () => {
     try {
       const { data } = await axios.get(
-        "https://alx-task-manager-backend.onrender.com/tasks"
-      );
-      setTasks(data);
+        `https://alx-task-manager-backend.onrender.com/tasks`
+      )
+      setTasks(data)
     } catch (_error) {
-      alert.error("Não foi possível recuperar as tarefas.");
+      alert.error('Não foi possível recuperar as tarefas.')
     }
-  }, [alert]);
+  }, [alert])
 
   const lastTasks = useMemo(() => {
-    return tasks.filter((task) => task.isCompleted === false);
-  }, [tasks]);
+    return tasks.filter((task) => task.isCompleted === false)
+  }, [tasks])
 
   const completedTask = useMemo(() => {
-    return tasks.filter((task) => task.isCompleted === true);
-  }, [tasks]);
+    return tasks.filter((task) => task.isCompleted === true)
+  }, [tasks])
 
   useEffect(() => {
-    fetchTasks();
-  }, [fetchTasks]);
+    fetchTasks()
+  }, [fetchTasks])
 
   return (
-    <div className="tasks-container">
+    <div className='tasks-container'>
       <h2>Minhas Tarefas</h2>
 
-      <div className="last-tasks">
+      <div className='last-tasks'>
         <h3>Últimas Tarefas</h3>
         <AddTask fetchTasks={fetchTasks} />
-        <div className="tasks-list">
+        <div className='tasks-list'>
           {lastTasks.map((lastTask) => (
             <TaskItem
               key={lastTask._id}
@@ -53,9 +53,9 @@ const Tasks = () => {
         </div>
       </div>
 
-      <div className="completed-tasks">
+      <div className='completed-tasks'>
         <h3>Tarefas Concluídas</h3>
-        <div className="tasks-list">
+        <div className='tasks-list'>
           {completedTask.map((completedTask) => (
             <TaskItem
               key={completedTask._id}
@@ -66,7 +66,7 @@ const Tasks = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Tasks;
+export default Tasks

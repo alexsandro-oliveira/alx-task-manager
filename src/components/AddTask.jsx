@@ -1,49 +1,49 @@
-import axios from "axios";
-import { useState } from "react";
-import { useAlert } from "react-alert";
-import { FaPlus } from "react-icons/fa";
+import axios from 'axios'
+import { useState } from 'react'
+import { useAlert } from 'react-alert'
+import { FaPlus } from 'react-icons/fa'
 
-import CustomButton from "./CustomButton";
-import CustomInput from "./CustomInput";
+import CustomButton from './CustomButton'
+import CustomInput from './CustomInput'
 
-import "./AddTask.scss";
+import './AddTask.scss'
 
 const AddTask = ({ fetchTasks }) => {
-  const [task, setTask] = useState("");
+  const [task, setTask] = useState('')
 
-  const alert = useAlert();
+  const alert = useAlert()
 
   const onChange = (e) => {
-    setTask(e.target.value);
-  };
+    setTask(e.target.value)
+  }
 
   const handleTaskAdd = async () => {
     try {
       if (task.length === 0) {
         return alert.error(
-          "A tarefa precisa de uma descrição para ser adicionada."
-        );
+          'A tarefa precisa de uma descrição para ser adicionada.'
+        )
       }
 
-      await axios.post("https://alx-task-manager-backend.onrender.com/tasks", {
+      await axios.post(`https://alx-task-manager-backend.onrender.com/tasks`, {
         description: task,
-        isCompleted: false,
-      });
+        isCompleted: false
+      })
 
-      await fetchTasks();
+      await fetchTasks()
 
-      setTask("");
+      setTask('')
 
-      alert.success("A tarefa foi adicionada com sucesso!");
+      alert.success('A tarefa foi adicionada com sucesso!')
     } catch (_error) {
-      alert.error("Algo deu errado.");
+      alert.error('Algo deu errado.')
     }
-  };
+  }
 
   return (
-    <div className="add-task-container">
+    <div className='add-task-container'>
       <CustomInput
-        label="Adicionar tarefa..."
+        label='Adicionar tarefa...'
         value={task}
         onChange={onChange}
         onEnterPress={handleTaskAdd}
@@ -52,7 +52,7 @@ const AddTask = ({ fetchTasks }) => {
         <FaPlus size={14} />
       </CustomButton>
     </div>
-  );
-};
+  )
+}
 
-export default AddTask;
+export default AddTask
