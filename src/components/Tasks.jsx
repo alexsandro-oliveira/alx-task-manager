@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAlert } from "react-alert";
 
 import "./Tasks.scss";
@@ -12,7 +12,7 @@ const Tasks = () => {
 
   const alert = useAlert();
 
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
       const { data } = await axios.get(
         "https://alx-task-manager-backend.onrender.com/tasks"
@@ -21,7 +21,7 @@ const Tasks = () => {
     } catch (_error) {
       alert.error("Não foi possível recuperar as tarefas.");
     }
-  };
+  }, [alert]);
 
   const lastTasks = useMemo(() => {
     return tasks.filter((task) => task.isCompleted === false);
@@ -33,7 +33,7 @@ const Tasks = () => {
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [fetchTasks]);
 
   return (
     <div className="tasks-container">
