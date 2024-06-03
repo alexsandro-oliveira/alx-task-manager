@@ -1,4 +1,4 @@
-import CustomButton from "./CustomButton";
+import CustomButton from "../components/CustomButton";
 
 import logo from "../assets/images/logo.png";
 import "./Sidebar.scss";

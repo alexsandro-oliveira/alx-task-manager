@@ -1,7 +1,7 @@
-import CustomButton from "./CustomButton";
+import CustomButton from "../components/CustomButton";
 
 import logo from "../assets/images/logo-2.png";
-import "./logo.scss";
+import "./Login.scss";
 
 const Login = () => {
   return (
